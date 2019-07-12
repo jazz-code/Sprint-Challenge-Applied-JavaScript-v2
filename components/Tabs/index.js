@@ -13,7 +13,7 @@ const divTopics = document.querySelector(".topics");
 axios
   .get(`https://lambda-times-backend.herokuapp.com/topics`)
   .then(data => {
-    console.log("response", data.data.topics);
+    // console.log("response", data.data.topics);
     const dataTopics = data.data.topics;
     dataTopics.forEach(() => {
       const element = tabComponent();
