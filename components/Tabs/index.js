@@ -11,3 +11,9 @@
 axios.get(`https://lambda-times-backend.herokuapp.com/topics`).then(data => {
   console.log("response", data);
 });
+
+function tabComponent() {
+  const tab = document.createElement("div");
+  tab.classList.add("tab");
+  tab.textContent = "Topic Here";
+}
