@@ -24,32 +24,32 @@ axios.get(`https://lambda-times-backend.herokuapp.com/articles`).then(data => {
   console.log(data.data.articles);
 });
 
-function Articles(obj) {
-  const card = document.createElement("div");
-  card.classList.add("card");
+// function Articles(obj) {
+//   const card = document.createElement("div");
+//   card.classList.add("card");
 
-  const headline = document.createElement("div");
-  headline.classList.add("headline");
-  headline.textContent = ``;
+//   const headline = document.createElement("div");
+//   headline.classList.add("headline");
+//   headline.textContent = ``;
 
-  const author = document.createElement("div");
-  author.classList.add("author");
-  const imgDiv = document.createElement("div");
-  imgDiv.classList.add("img-container");
+//   const author = document.createElement("div");
+//   author.classList.add("author");
+//   const imgDiv = document.createElement("div");
+//   imgDiv.classList.add("img-container");
 
-  const img = document.createElement("img");
-  img.src = ``;
-  const name = document.createElement("span");
-  name.textContent = `By `;
+//   const img = document.createElement("img");
+//   img.src = ``;
+//   const name = document.createElement("span");
+//   name.textContent = `By `;
 
-  card.appendChild(headline);
-  card.appendChild(author);
-  card.appendChild(imgDiv);
-  imgDiv.appendChild(img);
-  author.appendChild(name);
+//   card.appendChild(headline);
+//   card.appendChild(author);
+//   card.appendChild(imgDiv);
+//   imgDiv.appendChild(img);
+//   author.appendChild(name);
 
-  return card;
-}
+//   return card;
+// }
 
 function javascript(obj) {
   const card = document.createElement("div");
