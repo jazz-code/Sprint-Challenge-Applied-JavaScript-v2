@@ -19,31 +19,31 @@
 // Create a card for each of the articles and add the card to the DOM.
 const cards = document.querySelector(".cards-container");
 
-// const articles = [bootstrap, bootstrap2];
-
-// articles.forEach(article => {
-//     axios.get(`https://lambda-times-backend.herokuapp.com/${article}`).then(data => {
-//     const element = bootstrap(data.data)
-//     articles.appendChild(element)
-//     })
-// })
-
-axios.get(`https://lambda-times-backend.herokuapp.com/articles`).then(data => {
-  //   console.log(data.data.articles.bootstrap[0].authorName);
-  //   console.log(data.data.articles.javascript[0].headline);
-  //   console.log(data.data.articles.bootstrap[0]);
-  console.log(data.data.articles);
-
-  //   console.log("data", dataCards);
-  const card = bootstrap(data.data);
-  cards.appendChild(card);
-});
-
-// function getArticle(articleData){
-// axios.get(`https://lambda-times-backend.herokuapp.com/${articleData}`).then(data => {
-//   console.log(data);
+// axios.get(`https://lambda-times-backend.herokuapp.com/articles`).then(res => {
+//   //   console.log(data.data.articles.bootstrap[0].authorName);
+//   //   console.log(data.data.articles.javascript[0].headline);
+//   //   console.log(data.data.articles.bootstrap[0]);
+//   //   console.log(data.data.articles);
+//   let articles = res.data.articles;
+//   for (topic in articles) {
+//     articles[topic].forEach(obj => {
+//       cards.appendChild(article(obj));
+//     });
+//   }
 // });
-// }
+fetch("https://lambda-times-backend.herokuapp.com/articles")
+  .then(res => res.json())
+  .then(data => {
+    // const dataKeys = Object.keys(data);
+    const categories = Object.keys(data.articles);
+    // console.log('categories', categories)
+    categories.forEach(cat => {
+      console.log(cat);
+      data.articles[cat].forEach(obj => {
+        cards.appendChild(article(obj));
+      });
+    });
+  });
 
 function article(obj) {
   const card = document.createElement("div");
@@ -51,8 +51,7 @@ function article(obj) {
 
   const headline = document.createElement("div");
   headline.classList.add("headline");
-  //   headline.textContent = obj.articles.bootstrap[0].headline;
-  headline.textContent = `obj.articles${obj.articles}`;
+  headline.textContent = obj.headline;
 
   const author = document.createElement("div");
   author.classList.add("author");
@@ -60,10 +59,10 @@ function article(obj) {
   imgDiv.classList.add("img-container");
 
   const img = document.createElement("img");
-  img.src = obj.articles.bootstrap[0].authorPhoto;
+  img.src = obj.authorPhoto;
 
   const name = document.createElement("span");
-  name.textContent = `By ${obj.articles.bootstrap[0].authorName}`;
+  name.textContent = `By ${obj.name}`;
 
   card.appendChild(headline);
   card.appendChild(author);
@@ -73,194 +72,3 @@ function article(obj) {
 
   return card;
 }
-
-function bootstrap(obj) {
-  const card = document.createElement("div");
-  card.classList.add("card");
-
-  const headline = document.createElement("div");
-  headline.classList.add("headline");
-  headline.textContent = obj.articles.bootstrap[0].headline;
-
-  const author = document.createElement("div");
-  author.classList.add("author");
-  const imgDiv = document.createElement("div");
-  imgDiv.classList.add("img-container");
-
-  const img = document.createElement("img");
-  img.src = obj.articles.bootstrap[0].authorPhoto;
-
-  const name = document.createElement("span");
-  name.textContent = `By ${obj.articles.bootstrap[0].authorName}`;
-
-  card.appendChild(headline);
-  card.appendChild(author);
-  card.appendChild(imgDiv);
-  card.appendChild(img);
-  card.appendChild(name);
-
-  return card;
-}
-
-function bootstrap2(obj) {
-  const card = document.createElement("div");
-  card.classList.add("card");
-
-  const headline = document.createElement("div");
-  headline.classList.add("headline");
-  headline.textContent = obj.articles.bootstrap[1].headline;
-
-  const author = document.createElement("div");
-  author.classList.add("author");
-  const imgDiv = document.createElement("div");
-  imgDiv.classList.add("img-container");
-
-  const img = document.createElement("img");
-  img.src = obj.articles.bootstrap[1].authorPhoto;
-
-  const name = document.createElement("span");
-  name.textContent = `By ${obj.articles.bootstrap[1].authorName}`;
-
-  card.appendChild(headline);
-  card.appendChild(author);
-  card.appendChild(imgDiv);
-  card.appendChild(img);
-  card.appendChild(name);
-
-  return card;
-}
-
-// function javascript(obj) {
-//   const card = document.createElement("div");
-//   card.classList.add("card");
-
-//   const headline = document.createElement("div");
-//   headline.classList.add("headline");
-//   headline.textContent = ``;
-
-//   const author = document.createElement("div");
-//   author.classList.add("author");
-//   const imgDiv = document.createElement("div");
-//   imgDiv.classList.add("img-container");
-
-//   const img = document.createElement("img");
-//   img.src = ``;
-//   const name = document.createElement("span");
-//   name.textContent = `By `;
-
-//   card.appendChild(headline);
-//   card.appendChild(author);
-//   card.appendChild(imgDiv);
-//   imgDiv.appendChild(img);
-//   author.appendChild(name);
-
-//   return card;
-// }
-
-// function jquery(obj) {
-//   const card = document.createElement("div");
-//   card.classList.add("card");
-
-//   const headline = document.createElement("div");
-//   headline.classList.add("headline");
-//   headline.textContent = ``;
-
-//   const author = document.createElement("div");
-//   author.classList.add("author");
-//   const imgDiv = document.createElement("div");
-//   imgDiv.classList.add("img-container");
-
-//   const img = document.createElement("img");
-//   img.src = ``;
-//   const name = document.createElement("span");
-//   name.textContent = `By `;
-
-//   card.appendChild(headline);
-//   card.appendChild(author);
-//   card.appendChild(imgDiv);
-//   imgDiv.appendChild(img);
-//   author.appendChild(name);
-
-//   return card;
-// }
-
-// function node(obj) {
-//   const card = document.createElement("div");
-//   card.classList.add("card");
-
-//   const headline = document.createElement("div");
-//   headline.classList.add("headline");
-//   headline.textContent = ``;
-
-//   const author = document.createElement("div");
-//   author.classList.add("author");
-//   const imgDiv = document.createElement("div");
-//   imgDiv.classList.add("img-container");
-
-//   const img = document.createElement("img");
-//   img.src = ``;
-//   const name = document.createElement("span");
-//   name.textContent = `By `;
-
-//   card.appendChild(headline);
-//   card.appendChild(author);
-//   card.appendChild(imgDiv);
-//   imgDiv.appendChild(img);
-//   author.appendChild(name);
-
-//   return card;
-// }
-
-// function technology(obj) {
-//   const card = document.createElement("div");
-//   card.classList.add("card");
-
-//   const headline = document.createElement("div");
-//   headline.classList.add("headline");
-//   headline.textContent = ``;
-
-//   const author = document.createElement("div");
-//   author.classList.add("author");
-//   const imgDiv = document.createElement("div");
-//   imgDiv.classList.add("img-container");
-
-//   const img = document.createElement("img");
-//   img.src = ``;
-//   const name = document.createElement("span");
-//   name.textContent = `By `;
-
-//   card.appendChild(headline);
-//   card.appendChild(author);
-//   card.appendChild(imgDiv);
-//   imgDiv.appendChild(img);
-//   author.appendChild(name);
-
-//   return card;
-// }
-
-// function Articles(obj) {
-//   const card = document.createElement("div");
-//   card.classList.add("card");
-
-//   const headline = document.createElement("div");
-//   headline.classList.add("headline");
-//   headline.textContent = ``;
-
-//   const author = document.createElement("div");
-//   author.classList.add("author");
-//   const imgDiv = document.createElement("div");
-//   imgDiv.classList.add("img-container");
-
-//   const img = document.createElement("img");
-//   img.src = ``;
-//   const name = document.createElement("span");
-//   name.textContent = `By `;
-
-//   card.appendChild(headline);
-//   card.appendChild(author);
-//   card.appendChild(imgDiv);
-//   imgDiv.appendChild(img);
-//   author.appendChild(name);
-
-//   return card;
-// }
